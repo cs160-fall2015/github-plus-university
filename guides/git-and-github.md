@@ -17,7 +17,7 @@ this course.
 
 ## Motivation
 
-The motivation for using Git and GitHub for ComS 342 has two parts.
+The motivation for using Git and GitHub for CS160 has two parts.
 
 The first part is a convenience factor for the instrutor and TAs. Not
 surprisingly, BlackBoard isn't the most friendly for assignments dealing with
@@ -51,26 +51,26 @@ with GitHub.
    [https://github.com/join][join].
 
 2. Next you need to join the GitHub Organization that we've created for the
-   course: [ComS342-ISU][cs342]
+   course: [cs160-fall2015][cs342]
 
-   To join it, go to the [ComS 342 Registration](http://cs342.joshldavis.com/)
+   To join it, go to the [CS160 Registration](http://cs342.joshldavis.com/)
    page and click the **Sign in with GitHub** button.
 
    This application uses OAuth and it will take you to GitHub where you will
    have to give your permission to join it.
 
-3. Enter your NetID and you'll be automatically added to the organization and
+3. Enter your CalNetID and you'll be automatically added to the organization and
    will have a repository created for you.
 
 4. If for whatever reason you can't join the organization, contact Josh Davis,
    joshuad@iastate.edu and let him know.
 
-5. You should now be apart of the [ComS 342 Organization][cs342] and should have access
+5. You should now be apart of the [CS160 Organization][cs342] and should have access
    to a few different repositories.
 
    You should also now have a repository setup just for your homework solutions.
-   This should be located in the ComS342-ISU organization and be called
-   `hw-answers-<NetID here>`.
+   This should be located in the cs160-fall2015 organization and be called
+   `hw-answers-<CalNetID here>`.
 
    This is what you'll setup in the next section to allow you to write your
    homework answers and submit them.
@@ -79,14 +79,14 @@ If the above didn't work, contact one of the TAs to help you out.
 
 ## Setting Up Git
 
-You should have Git installed and have joined the ComS342-ISU organization from
+You should have Git installed and have joined the cs160-fall2015 organization from
 the previous section.
 
 1. The first thing we have to do is to clone the current homework repository by
    issuing the following commands onto the command line:
 
    ```bash
-    $ git clone git@github.com:ComS342-ISU/homework.git
+    $ git clone git@github.com:cs160-fall2015/homework.git
    ```
 
    This will make a complete replica of the homework repository locally. Now we
@@ -116,8 +116,8 @@ the previous section.
 
    ```bash
     $ git remote -v
-        origin git@github.com:ComS342-ISU/homework.git (fetch)
-        origin git@github.com:ComS342-ISU/homework.git (push)
+        origin git@github.com:cs160-fall2015/homework.git (fetch)
+        origin git@github.com:cs160-fall2015/homework.git (push)
    ```
 
    We don't want that remote to be the origin, instead, we want to change it to
@@ -131,18 +131,18 @@ the previous section.
 
    ```bash
     $ git remote -v
-        upstream git@github.com:ComS342-ISU/homework.git (fetch)
-        upstream git@github.com:ComS342-ISU/homework.git (push)
+        upstream git@github.com:cs160-fall2015/homework.git (fetch)
+        upstream git@github.com:cs160-fall2015/homework.git (push)
    ```
 
 3. Lastly we need to give your repository a new `origin` since it is lacking
    one. Issue the following but substituting your GitHub username in place:
 
    ```bash
-    $ git remote add origin git@github.com:ComS342-ISU/hw-answers-<NetID>.git
+    $ git remote add origin git@github.com:cs160-fall2015/hw-answers-<CalNetID>.git
    ```
 
-   But substitute in your own NetID of course.
+   But substitute in your own CalNetID of course.
 
    If you have an error that looks like the following:
 
@@ -160,7 +160,7 @@ the previous section.
    just issue the following command:
    
    ```bash
-   $ git remote set-url origin git@github.com:ComS342-ISU/hw-answers-<NetID>.git
+   $ git remote set-url origin git@github.com:cs160-fall2015/hw-answers-<CalNetID>.git
    ```
 
    This solution was found from [StackOverflow](http://stackoverflow.com/a/2432799) thanks to
@@ -172,10 +172,10 @@ the previous section.
 
    ```bash
     $ git remote -v
-        upstream git@github.com:ComS342-ISU/homework.git (fetch)
-        upstream git@github.com:ComS342-ISU/homework.git (push)
-        origin git@github.com:ComS342-ISU/hw-answers-<NetID>.git (fetch)
-        origin git@github.com:ComS342-ISU/hw-answers-<NetID>.git (push)
+        upstream git@github.com:cs160-fall2015/homework.git (fetch)
+        upstream git@github.com:cs160-fall2015/homework.git (push)
+        origin git@github.com:cs160-fall2015/hw-answers-<CalNetID>.git (fetch)
+        origin git@github.com:cs160-fall2015/hw-answers-<CalNetID>.git (push)
    ```
 
 4. Let's test it out by doing a push of your master branch to GitHub by issuing
@@ -193,7 +193,7 @@ the previous section.
     Compressing objects: 100% (3/3), done.
     Writing objects: 100% (3/3), 294 bytes | 0 bytes/s, done.
     Total 3 (delta 2), reused 0 (delta 0)
-    To git@github.com:ComS342-ISU/hw-answers-joshuad.git   f726472..545a4f0  master -> master
+    To git@github.com:cs160-fall2015/hw-answers-joshuad.git   f726472..545a4f0  master -> master
    ```
 
 5. That last command was a bit special and only needs to be ran the first time
@@ -215,7 +215,7 @@ easy just so long as you set up your repository based on the instructions from
 the last section.
 
 1. All new homework and previous homework solutions will be posted to the
-   [homeworks](https://github.com/ComS342-ISU/homework) repository in the class
+   [homeworks](https://github.com/cs160-fall2015/homework) repository in the class
    organization.
 
    Check it periodically as well as BlackBoard's announcements for updates on
@@ -282,7 +282,7 @@ Here are a few guideline steps for a process of submitting your solutions:
    Or, just `git push` for short.
 
 5. The last thing that we strongly recommend you do is to go to the
-   [ComS342-ISU][cs342] organization page on GitHub to
+   [cs160-fall2015][cs342] organization page on GitHub to
    make sure that we can see your solutions.
 
    Just navigate to your repository and check that your latest commits are on
@@ -308,6 +308,6 @@ to one of the TAs or instructor. Their contact information can be found in the
 
 [join]: https://github.com/join
 [resources]: https://help.github.com/articles/what-are-other-good-resources-for-learning-git-and-github
-[cs342]: https://github.com/ComS342-ISU
-[syllabus]: https://github.com/ComS342-ISU/course-info/blob/master/README.md
+[cs342]: https://github.com/cs160-fall2015
+[syllabus]: https://github.com/cs160-fall2015/course-info/blob/master/README.md
 [ssh-key]: https://help.github.com/articles/generating-ssh-keys

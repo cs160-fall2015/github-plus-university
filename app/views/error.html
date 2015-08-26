@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if error == 'invalid netid' %}
+    {% if error == 'invalid CalNetID' %}
         <h1>Error</h1>
 
         <p>
-            That is an invalid NetID. Why don't you <a href="/add">try again</a>?
+            That is an invalid CalNetID. Why don't you <a href="/add">try again</a>?
         </p>
 
         <p>
@@ -15,7 +15,7 @@
         <h1>Error</h1>
 
         <p>
-            It doesn't appear that your NetID was on the class list at this time.
+            It doesn't appear that your CalNetID was on the class list at this time.
         </p>
 
         <p>
@@ -53,7 +53,7 @@
         </p>
 
         <p>
-            Contact <a href="mailto:joshuad@iastate.edu?subject={{ error }}">Josh Davis</a>, one of
+            Contact <a href="mailto:cearto@berkeley.edu?subject={{ error }}">Cesar Torres</a>, one of
             the TAs, to fix things for you.
         </p>
     {% elif error == 'invalid token' %}
@@ -64,7 +64,7 @@
         </p>
 
         <p>
-            Contact <a href="mailto:joshuad@iastate.edu?subject={{ error }}">Josh Davis</a>, one of
+            Contact <a href="mailto:cearto@berkeley.edu?subject={{ error }}">Cesar Torres</a>, one of
             the TAs, to fix things for you.
         </p>
     {% elif error == 'already member' %}
@@ -72,12 +72,12 @@
 
         <p>
             It looks like you are already a member. Your repository is here:
-            <a href="https://github.com/ComS342-ISU/{{ repo }}">{{ repo }}</a>.
+            <a href="https://github.com/cs160-fall2015/{{ repo }}">{{ repo }}</a>.
         </p>
 
         <p>
             The next thing you will want to do is visit the
-            <a href="https://github.com/ComS342-ISU/course-info/blob/master/guides/course-setup.md">Course Setup Guide</a>
+            <a href="https://github.com/cs160-fall2015/course-info/blob/master/guides/course-setup.md">Course Setup Guide</a>
             and follow the instructions to setup Git.
         </p>
 

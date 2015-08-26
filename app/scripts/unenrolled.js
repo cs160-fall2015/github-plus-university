@@ -21,13 +21,13 @@ var app,
 
 config = {
     // Course Org
-    org: 'ComS342-ISU',
+    org: 'cs160-fall2015',
 
     // Prefix for student's repo
-    repo_prefix: 'hw-answers-',
+    repo_prefix: 'hw-programming-',
 
     // ISU Email
-    email: '@iastate.edu',
+    email: '@berkeley.edu',
 };
 
 handler = {};

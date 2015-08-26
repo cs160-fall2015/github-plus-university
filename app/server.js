@@ -6,7 +6,7 @@ var express = require('express'),
     sqlite3 = require('sqlite3').verbose(),
     github = require('github'),
     csv = require('csv'),
-    secret = require('./secret');
+    secret = require('../secret');
 
 var app,
     db,
@@ -20,7 +20,7 @@ var app,
 
 config = {
     // Course Org
-    org: 'ComS342-ISU',
+    org: 'cs160-fall2015',
 
     // Main Team
     student_team: '634635',
@@ -29,7 +29,7 @@ config = {
     team_prefix: 'Students: ',
 
     // Prefix for student's repo
-    repo_prefix: 'hw-answers-',
+    repo_prefix: 'prog-answers-',
 };
 
 handler = {};
@@ -90,7 +90,7 @@ app.get('/', function (req, res) {
 });
 
 // GitHub API callback as setup here:
-//      https://github.com/organizations/ComS342-ISU/settings/applications
+//      https://github.com/organizations/cs160-fall2015/settings/applications
 app.get('/auth', function (req, res) {
     var code = req.query.code;
 
@@ -128,13 +128,13 @@ app.get('/add', function (req, res) {
 });
 
 app.post('/add', function (req, res) {
-    var netID = req.body.netID;
+    var CalNetID = req.body.CalNetID;
 
     if (req.session.status !== true) {
         return res.redirect('/');
     }
 
-    handler.validateNetID(req, res, netID);
+    handler.validateCalNetID(req, res, CalNetID);
 });
 
 //
@@ -203,7 +203,7 @@ handler.retrieveAccessToken = function (req, res, err, response, body) {
         },
         headers: {
             'Accept': 'application/json',
-            'User-Agent': 'ComS 342 Course Bot',
+            'User-Agent': 'CS160 Course Bot',
         },
     };
 
@@ -237,11 +237,11 @@ handler.setGitHubInfo = function (req, res, token, err, response, body) {
 
 
 
-handler.validateNetID = function (req, res, netID) {
+handler.validateCalNetID = function (req, res, CalNetID) {
     var student = {},
         found = false;
 
-    if (!netID) {
+    if (!CalNetID) {
         return res.render('add', {
             error: true,
             name: req.session.name || req.session.username,
@@ -249,21 +249,21 @@ handler.validateNetID = function (req, res, netID) {
     }
 
     // Trim whitespace just in case
-    netID = netID.trim();
+    CalNetID = CalNetID.trim();
 
-    if (netID.indexOf('@iastate.edu') !== -1) {
-        netID = netID.substring(0, netID.length - '@iastate.edu'.length);
+    if (CalNetID.indexOf('@iastate.edu') !== -1) {
+        CalNetID = CalNetID.substring(0, CalNetID.length - '@iastate.edu'.length);
     }
 
     student.username = req.session.username;
     student.name = req.session.name;
     student.token = req.session.token;
-    student.netID = netID;
+    student.CalNetID = CalNetID;
 
     csv().from.path('./students.csv', {
         columns: ['last_name', 'first_name', 'username']
     }).on('record', function (row, i) {
-        if (netID === row.username) {
+        if (CalNetID === row.username) {
             found = true;
         }
     }).on('end', function () {
@@ -297,7 +297,7 @@ handler.checkMembership = function (req, res, gh, err, ret) {
     if (ret && ret.meta && ret.meta.status === '204 No Content') {
         return res.render('error', {
             error: 'already member',
-            repo: config.repo_prefix + gh.student.netID,
+            repo: config.repo_prefix + gh.student.CalNetID,
         });
     }
 
@@ -310,7 +310,7 @@ handler.checkMembership = function (req, res, gh, err, ret) {
 
     gh.api.orgs.createTeam({
         org: config.org,
-        name: config.team_prefix + gh.student.netID,
+        name: config.team_prefix + gh.student.CalNetID,
         permission: 'push',
     }, handler.addStudentToOwnTeam.bind(handler, req, res, gh));
 };
@@ -360,8 +360,8 @@ handler.createSolutionsRepo = function (req, res, gh, err, ret) {
 
     gh.api.repos.createFromOrg({
         org: config.org,
-        name: config.repo_prefix + gh.student.netID,
-        description: 'Homework solutions for ' + name + ', NetID: ' + gh.student.netID,
+        name: config.repo_prefix + gh.student.CalNetID,
+        description: 'Homework solutions for ' + name + ', CalNetID: ' + gh.student.CalNetID,
         private: true,
         has_issues: true,
         team_id: gh.team,
@@ -380,7 +380,7 @@ handler.apiFinishSetup = function (req, res, gh, err, ret) {
     console.log('Created new repo:' + util.inspect(ret));
 
     context = gh.student;
-    context.repo = config.repo_prefix + gh.student.netID;
+    context.repo = config.repo_prefix + gh.student.CalNetID;
 
     return res.render('success', context);
 };
